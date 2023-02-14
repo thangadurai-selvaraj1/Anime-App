@@ -7,4 +7,5 @@ import kotlinx.coroutines.flow.Flow
 interface HeroRepo {
     fun getAllHeroes(): Flow<PagingData<HeroResponse>>
     fun searchHeroes(query: String): Flow<PagingData<HeroResponse>>
+    fun getSingleHero(id: Int): Flow<HeroResponse>
 }

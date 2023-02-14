@@ -24,6 +24,7 @@ import com.thangadurai.animeapp.utils.Constants.SPLASH_DELAY_DURATION
 import com.thangadurai.animeapp.utils.Constants.d360Degree
 import com.thangadurai.animeapp.utils.Dp
 import com.thangadurai.animeapp.utils.FloatConst
+import com.thangadurai.animeapp.utils.SetNormalStatusBarColor
 import kotlinx.coroutines.delay
 
 @Composable
@@ -31,6 +32,8 @@ fun SplashScreen(
     navHostController: NavHostController,
     splashViewModel: SplashViewModel = hiltViewModel()
 ) {
+
+    SetNormalStatusBarColor()
 
     val rotate = remember {
         Animatable(initialValue = FloatConst.f0)

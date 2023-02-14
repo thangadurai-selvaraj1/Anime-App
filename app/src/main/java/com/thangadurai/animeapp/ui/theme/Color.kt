@@ -42,3 +42,8 @@ val Colors.inActiveColor
 val Colors.homeAppbarBgColor
     @Composable
     get() = if (isLight) Purple700 else Color.Black
+
+
+val Colors.statusBarColor
+    @Composable
+    get() = if (isLight) Purple700 else Color.Black

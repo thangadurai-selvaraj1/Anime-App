@@ -9,6 +9,6 @@ object ScreensConstants {
     const val SEARCH_SCREEN = "search_screen"
 
     // Param
-    const val HERO_ID_KEY = "heroID"
+    const val HERO_ID_KEY = "heroId"
 
 }

@@ -12,8 +12,11 @@ object Dp {
     val d18 = 18.dp
     val d20 = 20.dp
     val d24 = 24.dp
+    val d30 = 30.dp
+    val d40 = 40.dp
     val d54 = 54.dp
     val d120 = 120.dp
+    val d150 = 150.dp
     val d350 = 350.dp
     val d400 = 400.dp
 }
@@ -22,6 +25,7 @@ object Sp {
 
     val s10 = 10.sp
     val s18 = 18.sp
+    val s24 = 24.sp
     val s16 = 16.sp
     val s14 = 14.sp
 }

@@ -70,10 +70,12 @@ object NetworkModule {
     @Provides
     @Singleton
     fun provideHeroRepo(
-        remoteDataSource: RemoteDataSource
+        remoteDataSource: RemoteDataSource,
+        animeDataBase: AnimeDataBase
     ): HeroRepo {
         return HeroRepoImpl(
-            remoteDataSource = remoteDataSource
+            remoteDataSource = remoteDataSource,
+            heroDao = animeDataBase.heroDao()
         )
     }
 

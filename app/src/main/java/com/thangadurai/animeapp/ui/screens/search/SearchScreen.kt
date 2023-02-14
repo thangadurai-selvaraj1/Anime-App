@@ -14,7 +14,9 @@ import androidx.paging.LoadState
 import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.items
 import com.thangadurai.animeapp.data.models.network.HeroResponse
+import com.thangadurai.animeapp.navigation.Screens
 import com.thangadurai.animeapp.ui.widgets.*
+import com.thangadurai.animeapp.utils.SetNormalStatusBarColor
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
@@ -22,6 +24,8 @@ fun SearchScreen(
     navHostController: NavHostController,
     viewModel: SearchViewModel = hiltViewModel()
 ) {
+
+    SetNormalStatusBarColor()
 
     val searchHeroes = viewModel.searchHeroes.collectAsLazyPagingItems()
 
@@ -54,7 +58,7 @@ fun SearchScreen(
                         is LoadState.Loading -> item {
                             if (viewModel.showLoading.value)
                                 AnimatedShimmerHeroWidget()
-                            if(searchHeroes.itemCount == 0)
+                            if (searchHeroes.itemCount == 0)
                                 SearchPlaceholderWidget()
                         }
                         is LoadState.NotLoading -> {
@@ -82,10 +86,10 @@ fun SearchScreen(
                                                 abilities = it.abilities,
                                                 natureTypes = it.natureTypes,
                                             )
-                                        ) {
-                                            /*navHostController.navigate(
-                                                Screens.SplashScreen.route
-                                            )*/
+                                        ) { id ->
+                                            navHostController.navigate(
+                                                Screens.DetailScreen.passHeroID(id)
+                                            )
                                         }
                                     }
                                 }

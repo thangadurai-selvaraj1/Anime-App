@@ -17,6 +17,7 @@ import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
 import com.thangadurai.animeapp.data.models.network.HeroResponse
 import com.thangadurai.animeapp.navigation.Screens
 import com.thangadurai.animeapp.ui.widgets.*
+import com.thangadurai.animeapp.utils.SetNormalStatusBarColor
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
@@ -24,6 +25,8 @@ fun HomeScreen(
     navHostController: NavHostController,
     homeViewModel: HomeViewModel = hiltViewModel()
 ) {
+
+    SetNormalStatusBarColor()
 
     val allHeroes = homeViewModel.getAllHeroes.collectAsLazyPagingItems()
     var isRef by remember {
@@ -74,10 +77,10 @@ fun HomeScreen(
                                             abilities = it.abilities,
                                             natureTypes = it.natureTypes,
                                         )
-                                    ) {
-                                        /*navHostController.navigate(
-                                            Screens.SplashScreen.route
-                                        )*/
+                                    ) { id ->
+                                        navHostController.navigate(
+                                            Screens.DetailScreen.passHeroID(id)
+                                        )
                                     }
                                 }
                             }

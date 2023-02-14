@@ -6,6 +6,7 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
+import com.thangadurai.animeapp.ui.screens.details.DetailsScreen
 import com.thangadurai.animeapp.ui.screens.home.HomeScreen
 import com.thangadurai.animeapp.ui.screens.onBoard.OnBoardingScreen
 import com.thangadurai.animeapp.ui.screens.search.SearchScreen
@@ -33,7 +34,7 @@ fun SetupNavGraph(navHostController: NavHostController) {
                 type = NavType.IntType
             })
         ) {
-
+            DetailsScreen(navHostController)
         }
         composable(route = Screens.SearchScreen.route) {
             SearchScreen(navHostController)
