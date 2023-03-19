@@ -17,7 +17,7 @@ object Constants {
     /**
      * Paging
      * */
-    const val PAGE_SIZE = 3
+    const val PAGE_SIZE = 10
 
 
     /**

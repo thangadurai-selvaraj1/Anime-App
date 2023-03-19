@@ -42,7 +42,55 @@ fun HomeScreen(
             }
         },
         content = {
-            SwipeRefresh(
+            LazyColumn(
+                modifier = Modifier.fillMaxSize(),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                allHeroes.apply {
+                    when (loadState.refresh) {
+                        is LoadState.Loading -> item {
+                            AnimatedShimmerHeroWidget()
+                        }
+                        is LoadState.NotLoading -> items(
+                            items = allHeroes,
+                            key = { it.id }) { heroes ->
+                            heroes?.let {
+                                HeroWidget(
+                                    heroResponse = HeroResponse(
+                                        id = it.id,
+                                        name = it.name,
+                                        image = it.image,
+                                        about = it.about,
+                                        month = it.month,
+                                        day = it.day,
+                                        rating = it.rating,
+                                        power = it.power,
+                                        family = it.family,
+                                        abilities = it.abilities,
+                                        natureTypes = it.natureTypes,
+                                    )
+                                ) { id ->
+                                    navHostController.navigate(
+                                        Screens.DetailScreen.passHeroID(id)
+                                    )
+                                }
+                            }
+                        }
+                        is LoadState.Error -> item {
+                            ErrorWidget(loadState.refresh as LoadState.Error)
+                        }
+                    }
+
+                    when (loadState.append) {
+                        LoadState.Loading ->
+                            item {
+                                PagingLoadingWidget()
+                            }
+                        else -> Unit
+                    }
+                }
+            }
+            /*SwipeRefresh(
                 state = rememberSwipeRefreshState(isRefreshing = isRef),
                 swipeEnabled = allHeroes.itemCount == 0,
                 onRefresh = {
@@ -50,55 +98,8 @@ fun HomeScreen(
                     allHeroes.refresh()
                     isRef = false
                 }) {
-                LazyColumn(
-                    modifier = Modifier.fillMaxSize(),
-                    horizontalAlignment = Alignment.CenterHorizontally
-                ) {
-                    allHeroes.apply {
-                        when (loadState.refresh) {
-                            is LoadState.Loading -> item {
-                                AnimatedShimmerHeroWidget()
-                            }
-                            is LoadState.NotLoading -> items(
-                                items = allHeroes,
-                                key = { it.id }) { heroes ->
-                                heroes?.let {
-                                    HeroWidget(
-                                        heroResponse = HeroResponse(
-                                            id = it.id,
-                                            name = it.name,
-                                            image = it.image,
-                                            about = it.about,
-                                            month = it.month,
-                                            day = it.day,
-                                            rating = it.rating,
-                                            power = it.power,
-                                            family = it.family,
-                                            abilities = it.abilities,
-                                            natureTypes = it.natureTypes,
-                                        )
-                                    ) { id ->
-                                        navHostController.navigate(
-                                            Screens.DetailScreen.passHeroID(id)
-                                        )
-                                    }
-                                }
-                            }
-                            is LoadState.Error -> item {
-                                ErrorWidget(loadState.refresh as LoadState.Error)
-                            }
-                        }
 
-                        when (loadState.append) {
-                            LoadState.Loading ->
-                                item {
-                                    PagingLoadingWidget()
-                                }
-                            else -> Unit
-                        }
-                    }
-                }
-            }
+            }*/
 
         }
     )

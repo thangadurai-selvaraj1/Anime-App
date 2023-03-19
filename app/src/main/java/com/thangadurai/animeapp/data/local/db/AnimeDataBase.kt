@@ -10,7 +10,8 @@ import com.thangadurai.animeapp.data.models.network.HeroResponse
 
 @Database(
     entities = [HeroResponse::class, HeroRemoteKey::class],
-    version = 1
+    version = 1,
+    exportSchema = false
 )
 @TypeConverters(TypeConvertor::class)
 abstract class AnimeDataBase : RoomDatabase() {

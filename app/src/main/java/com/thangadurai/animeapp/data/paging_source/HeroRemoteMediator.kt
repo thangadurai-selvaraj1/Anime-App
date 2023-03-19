@@ -11,10 +11,9 @@ import com.thangadurai.animeapp.data.models.network.HeroResponse
 import com.thangadurai.animeapp.data.remote.AnimeApiService
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import javax.inject.Inject
 
 @ExperimentalPagingApi
-class HeroRemoteMediator @Inject constructor(
+class HeroRemoteMediator(
     private val animeApi: AnimeApiService,
     private val animeDatabase: AnimeDataBase
 ) : RemoteMediator<Int, HeroResponse>() {
